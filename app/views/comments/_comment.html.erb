@@ -1,2 +1,11 @@
-<p style="text-decoration:underline;"><%= comment.commenter %></p>
-<p><%= comment.body %></p>
+<% unless comment.archived? %>
+    <p style="text-decoration:underline;"><%= comment.commenter %></p>
+    <p><%= comment.body %></p>
+    <p>
+    <%= link_to "Destroy Comment", [comment.article, comment], 
+        data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+        } %>
+  </p>
+<% end %>
